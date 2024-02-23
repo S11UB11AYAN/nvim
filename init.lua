@@ -41,8 +41,19 @@ P.S. You can delete this when you're done too. It's your config now :)
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
+
+-- Lua equivalent of Vim highlight commands
+-- vim.cmd([[highlight Normal guibg=none]])
+-- vim.cmd([[highlight NonText guibg=none]])
+-- vim.cmd([[highlight Normal ctermbg=none]])
+-- vim.cmd([[highlight NonText ctermbg=none]])
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.o.termguicolors = true
+vim.opt.guicursor = "n-v-i-c:block-Cursor"
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
@@ -215,39 +226,6 @@ require('lazy').setup({
   },
 
   {
-    'ellisonleao/gruvbox.nvim',
-    priority = 1000 ,
-    lazy = false,
-    config = function()
-      require("gruvbox").setup{
-        terminal_colors = true, -- add neovim terminal colors
-        undercurl = true,
-        underline = true,
-        bold = true,
-        italic = {
-          strings = false,
-          emphasis = true,
-          comments = true,
-          operators = false,
-          folds = true,
-        },
-        strikethrough = true,
-        invert_selection = false,
-        invert_signs = false,
-        invert_tabline = false,
-        invert_intend_guides = false,
-        inverse = true, -- invert background for search, diffs, statuslines and errors
-        contrast = "", -- can be "hard", "soft" or empty string
-        palette_overrides = {},
-        overrides = {},
-        dim_inactive = false,
-        transparent_mode = false,
-      }
-      require('gruvbox').load()
-    end,
-    },
-
-  {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
@@ -302,29 +280,29 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
-  {
-    "nvim-neorg/neorg",
-    build = ":Neorg sync-parsers",
-    -- tag = "*",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("neorg").setup {
-        load = {
-          ["core.defaults"] = {}, -- Loads default behaviour
-          ["core.concealer"] = {}, -- Adds pretty icons to your documents
-          ["core.dirman"] = { -- Manages Neorg workspaces
-            config = {
-              workspaces = {
-                notes = "~/Life",
-              },
-              default_workspace = "notes",
-            },
-          },
-        },
-      }
-    end,
-  },
-
+  -- {
+  --   "nvim-neorg/neorg",
+  --   build = ":Neorg sync-parsers",
+  --   -- tag = "*",
+  --   dependencies = { "nvim-lua/plenary.nvim" },
+  --   config = function()
+  --     require("neorg").setup {
+  --       load = {
+  --         ["core.defaults"] = {}, -- Loads default behaviour
+  --         ["core.concealer"] = {}, -- Adds pretty icons to your documents
+  --         ["core.dirman"] = { -- Manages Neorg workspaces
+  --           config = {
+  --             workspaces = {
+  --               notes = "~/Life",
+  --             },
+  --             default_workspace = "notes",
+  --           },
+  --         },
+  --       },
+  --     }
+  --   end,
+  -- },
+{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -381,7 +359,7 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
-vim.opt.cursorline = true -- highlight the current line
+-- vim.opt.cursorline = true -- highlight the current line
 
 -- [[ Basic Keymaps ]]
 
@@ -737,3 +715,22 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+require("gruvbox").setup({
+  terminal_colors = true, -- add neovim terminal colors
+  undercurl = true,
+  underline = true,
+  bold = true,
+  strikethrough = true,
+  invert_selection = false,
+  invert_signs = false,
+  invert_tabline = false,
+  invert_intend_guides = false,
+  inverse = true, -- invert background for search, diffs, statuslines and errors
+  contrast = "", -- can be "hard", "soft" or empty string
+  palette_overrides = {},
+  overrides = {},
+  dim_inactive = false,
+  transparent_mode = true,
+})
+vim.cmd("colorscheme gruvbox")
