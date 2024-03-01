@@ -55,7 +55,7 @@ vim.opt.guicursor = "n-v-i-c:block-Cursor"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.cursorline = true
-
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n><CR>')
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
@@ -742,3 +742,5 @@ require("gruvbox").setup({
   transparent_mode = true,
 })
 vim.cmd("colorscheme gruvbox")
+
+
