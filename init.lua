@@ -54,16 +54,17 @@ vim.o.termguicolors = true
 vim.opt.guicursor = "n-v-i-c:block-Cursor"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+vim.opt.cursorline = true
 
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- Better window navigation
-keymap("n", "<m-h>", "<C-w>h", opts)
-keymap("n", "<m-j>", "<C-w>j", opts)
-keymap("n", "<m-k>", "<C-w>k", opts)
-keymap("n", "<m-l>", "<C-w>l", opts)
-keymap("n", "<m-tab>", "<c-6>", opts)
+-- keymap("n", "<m-h>", "<C-w>h", opts)
+-- keymap("n", "<m-j>", "<C-w>j", opts)
+-- keymap("n", "<m-k>", "<C-w>k", opts)
+-- keymap("n", "<m-l>", "<C-w>l", opts)
+-- keymap("n", "<m-tab>", "<c-6>", opts)
 
 keymap("n", "n", "nzz", opts)
 keymap("n", "N", "Nzz", opts)
@@ -721,6 +722,13 @@ require("gruvbox").setup({
   undercurl = true,
   underline = true,
   bold = true,
+ italic = {
+    strings = false,
+    emphasis = false,
+    comments = true,
+    operators = false,
+    folds = false,
+  }, 
   strikethrough = true,
   invert_selection = false,
   invert_signs = false,
