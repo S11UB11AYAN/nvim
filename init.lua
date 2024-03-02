@@ -239,11 +239,11 @@ require('lazy').setup({
         component_separators = '|',
         section_separators = '',
       },
-      sections = {
-        lualine_a = {
-        'buffers',
-        }
-      }
+      -- sections = {
+      --   lualine_a = {
+      --   'buffers',
+      --   }
+      -- }
     },
   },
 
@@ -310,7 +310,17 @@ require('lazy').setup({
   --     }
   --   end,
   -- },
-{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
+  { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
+  { "vimwiki/vimwiki",
+    config = function() 
+      vim.g.vimwiki_list = {
+        {
+          syntax = 'default',
+          ext = '.wiki',
+        },
+      }
+    end,
+  },
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
