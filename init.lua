@@ -642,6 +642,7 @@ local servers = {
   pyright = {},
   -- rust_analyzer = {},
   tsserver = {},
+  cssls = {},
   html = { filetypes = { 'html', 'twig', 'hbs'} },
 
   lua_ls = {
