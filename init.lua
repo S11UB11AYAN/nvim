@@ -51,10 +51,12 @@ P.S. You can delete this when you're done too. It's your config now :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.o.termguicolors = true
+vim.g.netrw_banner = 0
 vim.opt.guicursor = "n-v-i-c:block-Cursor"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.cursorline = true
+
 
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n><CR>')
 
@@ -81,7 +83,7 @@ keymap("v", ">", ">gv", opts)
 
 keymap("x", "p", [["_dP]])
 
-keymap("n", "<leader>ep", ":Lexplore 30<cr>", opts)
+keymap("n", "<leader>ep", ":Neotree<CR>", opts)
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
@@ -320,6 +322,16 @@ require('lazy').setup({
         },
       }
     end,
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+    }
   },
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
