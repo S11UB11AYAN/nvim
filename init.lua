@@ -154,7 +154,7 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 -- vim.opt.scrolloff = 10
 
-vim.opt.conceallevel = 1
+vim.opt.conceallevel = 2
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -181,10 +181,10 @@ vim.keymap.set("n", "<leader>nn", "<cmd>ObsidianNew<cr>", { desc = "[N]ew [N]ote
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -194,6 +194,12 @@ vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left wind
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+
+-- Navigate between quickfix list
+vim.keymap.set("n", "<leader>cp", "<cmd>cprev<CR>zz", { desc = "Quickfix [P]revious" })
+vim.keymap.set("n", "<leader>cn", "<cmd>cnext<CR>zz", { desc = "Quickfix [N]ext" })
+vim.keymap.set("n", "<leader>cl", "<cmd>ccl<CR>", { desc = "Quickfix [C]lose" })
+vim.keymap.set("n", "<leader>co", "<cmd>copen<CR>", { desc = "Quickfix [O]pen" })
 
 vim.opt.guicursor = "n-v-i-c:block-Cursor"
 
@@ -722,6 +728,7 @@ require("lazy").setup({
 			--  into multiple repos for maintenance purposes.
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-buffer",
 		},
 		config = function()
 			-- See `:help cmp`
@@ -791,6 +798,7 @@ require("lazy").setup({
 				}),
 				sources = {
 					{ name = "nvim_lsp" },
+					{ name = "buffer" },
 					{ name = "luasnip" },
 					{ name = "path" },
 				},
