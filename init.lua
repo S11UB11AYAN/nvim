@@ -152,7 +152,7 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
--- vim.opt.scrolloff = 10
+vim.opt.scrolloff = 10
 
 vim.opt.conceallevel = 2
 
@@ -160,7 +160,7 @@ vim.opt.conceallevel = 2
 --  See `:help vim.keymap.set()`
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
-vim.opt.hlsearch = true
+vim.opt.hlsearch = false
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Diagnostic keymaps
@@ -688,7 +688,7 @@ require("lazy").setup({
 				javascript = { { "prettierd", "prettier" } },
 				typescript = { { "prettierd", "prettier" } },
 				javascriptreact = { { "prettierd", "prettier" } },
-				tyoescriptreact = { { "prettierd", "prettier" } },
+				typescriptreact = { { "prettierd", "prettier" } },
 			},
 		},
 	},
@@ -915,3 +915,10 @@ require("lazy").setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+local function set_ejs_filetype_to_html()
+	vim.api.nvim_command("autocmd BufNewFile,BufRead *.ejs set filetype=html")
+end
+
+-- Call the function to set the filetype
+set_ejs_filetype_to_html()
